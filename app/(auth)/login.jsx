@@ -1,0 +1,54 @@
+import { StyleSheet, Pressable, Text } from "react-native";
+import { Link } from "expo-router";
+import ThemedView from "../../components/ThemedView";
+import ThemeText from "../../components/ThemeText";
+import Spacer from "../../components/Spacer";
+import { Colors } from "../../constants/Colors";
+import ThemedButton from "../../components/ThemedButton";
+
+const Login = () => {
+  const handleSubmit = () => {
+    // Handle login logic here
+    console.log("Login button pressed");
+  };
+  return (
+    <ThemedView style={styles.container}>
+      <Spacer />
+      <ThemeText title={true} style={styles.title}>
+        Login to Your Account
+      </ThemeText>
+
+      <ThemedButton onPress={handleSubmit}>
+        <Text style={{ color: "#f2f2f2" }}>Login</Text>
+      </ThemedButton>
+
+      <Spacer height={100} />
+      <Link href="/register" style={styles.link}>
+        <ThemeText style={{ textAlign: "center" }}>Register instead</ThemeText>
+      </Link>
+    </ThemedView>
+  );
+};
+
+export default Login;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  title: {
+    fontSize: 18,
+    textAlign: "center",
+    marginBottom: 30,
+  },
+  btn: {
+    backgroundColor: Colors.primary,
+    padding: 15,
+    borderRadius: 5,
+  },
+  pressed: {
+    opacity: 0.8,
+  },
+});

@@ -3,6 +3,8 @@ import { useRouter } from 'expo-router'
 import { useEffect } from 'react'
 import { Text } from 'react-native'
 
+import ThemedLoader from '../ThemedLoader'
+
 const GuestOnly = ({ children }) => {
   const { user, authChecked } = useUser()
   const router = useRouter()
@@ -15,7 +17,7 @@ const GuestOnly = ({ children }) => {
 
   if (!authChecked || user) {
     return (
-      <Text>Loading</Text>
+      <ThemedLoader />
     )
   }
 

@@ -1,7 +1,7 @@
 import { StyleSheet, FlatList, Pressable } from "react-native";
 import { useBooks } from "../../hooks/useBooks";
 import { Colors } from "../../constants/Colors";
-
+import { useRouter } from "expo-router";
 import Spacer from "../../components/Spacer";
 import ThemedText from "../../components/ThemedText";
 import ThemedView from "../../components/ThemedView";
@@ -9,6 +9,7 @@ import ThemedCard from "../../components/ThemedCard";
 
 const Books = () => {
   const { books } = useBooks();
+  const router = useRouter();
   return (
     <ThemedView style={styles.container} safe={true}>
       <Spacer />
@@ -21,7 +22,7 @@ const Books = () => {
         keyExtractor={(item) => item.$id}
         contentContainerStyle={styles.list}
         renderItem={({ item }) => (
-          <Pressable>
+          <Pressable onPress={() => router.push(`/books/${item.$id}`)}>
             <ThemedCard style={styles.card}>
               <ThemedText style={styles.title}>{item.title}</ThemedText>
               <ThemedText>Written by {item.author}</ThemedText>
@@ -46,8 +47,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: "center",
   },
-    list: {
-    marginTop: 40
+  list: {
+    marginTop: 40,
   },
   card: {
     width: "90%",
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingLeft: 14,
     borderLeftColor: Colors.primary,
-    borderLeftWidth: 4
+    borderLeftWidth: 4,
   },
   title: {
     fontSize: 20,

@@ -29,6 +29,13 @@ export function BooksProvider({ children }) {
 
   async function fetchBookById(id) {
     try {
+      const response = await databases.getDocument(
+        DATABASE_ID,
+        COLLECTION_ID,
+        id,
+      );
+
+      return response;
     } catch (error) {
       console.log(error.message);
     }
@@ -54,6 +61,11 @@ export function BooksProvider({ children }) {
 
   async function deleteBook(id) {
     try {
+      await databases.deleteDocument(
+        DATABASE_ID,
+        COLLECTION_ID,
+        id,
+      )
     } catch (error) {
       console.log(error.message);
     }
